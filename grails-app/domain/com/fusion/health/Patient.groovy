@@ -17,7 +17,7 @@ class Patient {
 	private numberCantExccedEightDigits() {
 		if(id.toString().length()>8) throw(RuntimeException)
 	}
-	def fullName() {return "${lastName}, ${firstName} ${middleName}"}
+	def fullName() {return "${firstName} ${middleName} ${lastName}"}
 	
 	static namedQueries={
 		onTreatment {
@@ -26,6 +26,7 @@ class Patient {
 	}
 	
 	static hasOne = [location : Location]
+	static hasMany = [usage : Usage]
 
     static constraints = {
 		lastName blank:false, maxSize:30

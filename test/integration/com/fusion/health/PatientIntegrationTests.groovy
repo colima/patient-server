@@ -12,7 +12,7 @@ import org.junit.*
 class PatientIntegrationTests {
 
 	private def TIME_PATTERN = "yyyy-MM-dd"
-	private def location = new Location(code : 1, name : "London") 
+	private def location = new Location(code : 1, name : "Somewhere") 
 	private def chaplin = new Patient(lastName:"Chaplin", middleName:"Spencer",firstName:"Charles",gender:Gender.Male,status:Status.Treatment,birth:new Date().parse(TIME_PATTERN,"1889-04-16"),location:location)
 	private def paganini = new Patient(lastName:"Paganini", middleName:"Paganini",firstName:"Niccolò",gender:Gender.Male,status:Status.Treatment,birth:new Date().parse(TIME_PATTERN,"1782-10-27"),location:location)
 	private def bach = new Patient(lastName:"Bach", middleName:"Sebastian",firstName:"Johann",gender:Gender.Male,status:Status.Initial,birth:new Date().parse(TIME_PATTERN,"1685-03-31"),location:location) 
