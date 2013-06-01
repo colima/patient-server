@@ -1,7 +1,7 @@
 package com.fusion.health
 
 class Patient {
-	
+
 	String lastName
 	String middleName
 	String firstName
@@ -16,6 +16,13 @@ class Patient {
 		return "MR${String.format('%08d',id)}"
 	}
 	
+	def latestAHI(){
+		def validUsages = usages.findAll{it.AHI!=0}
+		if(!validUsages) return null
+		def usage = validUsages.max{a,b -> a.date <=> b.date}
+		return [index:usage.AHI,date:usage.date]
+	}
+
 	def compliance() {
 		def c = this.usages.findAll{it.status == Usage.Status.Compliant}.size()
 		def np = this.usages.findAll{it.status != Usage.Status.Pending}.size()
@@ -30,7 +37,7 @@ class Patient {
 		def np = this.usages.findAll{it.status != Usage.Status.Pending}.size()
 		return np==0?0:nc_c/np
 	}
-	
+
 	def fullName() {
 		return "${firstName} ${middleName} ${lastName}"
 	}
@@ -48,16 +55,16 @@ class Patient {
 		status blank:false
 		id bindable:true, maxSize:8
 	}
-	
+
 	@Override
 	public String toString() {
 		return fullName()
 	}
-	
+
 	private def numberCantExceedEightDigits() {
 		if(id.toString().length()>8) throw new RuntimeException("Could you forget to change MR max digits ?")
 	}
-	
+
 	public enum Status {
 		Initial, Referred, Treatment, Closed
 	}
