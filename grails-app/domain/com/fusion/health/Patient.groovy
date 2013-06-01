@@ -18,24 +18,15 @@ class Patient {
 	def compliance() {
 		def c = this.usages.findAll{it.status == Usage.Status.Compliant}.size()
 		def np = this.usages.findAll{it.status != Usage.Status.Pending}.size()
-		
-		if(np==0) return 0
-		
-		return c/np
+		return np==0?0:c/np
 	}
 	def effort(){
 		def nc_c = this.usages.findAll{ 
 			it.status == Usage.Status.NonCompliant || 
 			it.status == Usage.Status.Compliant
 		}.size()
-		def np = this.usages.findAll{u -> u.status != Usage.Status.Pending}.size()
-		
-		if(np==0) return 0
-		
-		return (nc_c)/np
-	}
-	private numberCantExccedEightDigits() {
-		if(id.toString().length()>8) throw(RuntimeException)
+		def np = this.usages.findAll{it.status != Usage.Status.Pending}.size()
+		return np==0?0:nc_c/np
 	}
 	def fullName() {
 		return "${firstName} ${middleName} ${lastName}"
@@ -58,6 +49,9 @@ class Patient {
 	@Override
 	public String toString() {
 		return fullName()
+	}
+	private def numberCantExccedEightDigits() {
+		if(id.toString().length()>8) throw(RuntimeException)
 	}
 	public enum Status {
 		Initial, Referred, Treatment, Closed
