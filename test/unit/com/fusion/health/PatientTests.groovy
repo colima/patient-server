@@ -33,4 +33,41 @@ class PatientTests {
 			patient.medicalRecord()
 		}
 	}
+	
+	@Test
+	void should_computate_compliance(){
+		def patient = new Patient()
+		patient.usages = usages()
+		assertEquals(patient.compliance(),0.5)
+	}
+	
+	@Test
+	void should_computate_effort(){
+		def patient = new Patient()
+		patient.usages = usages()
+		assertEquals(patient.effort(),3/4)
+	}
+	
+	@Test
+	void should_effort_return_zero_on_lack_of_status(){
+		def patient = new Patient()
+		assertEquals(patient.effort(),0)
+	}
+	
+	@Test
+	void should_compliance_return_zero_on_lack_of_status(){
+		def patient = new Patient()
+		assertEquals(patient.effort(),0)
+	}
+	
+	private def usages(){
+		def TIME_PATTERN = "yyyy-MM-dd"
+		return [
+			new Usage([status:Usage.Status.Pending,date:new Date().parse(TIME_PATTERN,"2013-01-01"),AHI:12]),
+			new Usage([status:Usage.Status.Compliant,date:new Date().parse(TIME_PATTERN,"2013-01-02"),AHI:12]),
+			new Usage([status:Usage.Status.NonCompliant,date:new Date().parse(TIME_PATTERN,"2013-01-03"),AHI:12]),
+			new Usage([status:Usage.Status.NotUsed,date:new Date().parse(TIME_PATTERN,"2013-01-04"),AHI:12]),
+			new Usage([status:Usage.Status.Compliant,date:new Date().parse(TIME_PATTERN,"2013-01-05"),AHI:12])
+		]
+	}
 }

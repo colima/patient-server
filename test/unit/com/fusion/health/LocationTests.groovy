@@ -11,6 +11,7 @@ import org.junit.*
 @TestFor(Location)
 class LocationTests {
 
+	@Ignore
     void testSomething() {
        fail "Implement me"
     }

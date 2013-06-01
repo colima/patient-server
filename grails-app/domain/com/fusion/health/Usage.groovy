@@ -2,18 +2,19 @@ package com.fusion.health
 
 class Usage {
 
-	static belongsTo = [patient : Patient]
 	Date date
-	Status status
+	Usage.Status status
 	int AHI
 	boolean excluded
 
 	static constraints = {
 		patient blank:false
 		date blank:false
-		status blanck:false
+		status blank:false
 	}
 
+	static belongsTo = [patient : Patient]
+	
 	static hibernateFilters = {
 		notExcludedFilter(condition:'excluded=0', default:true)
 	}
@@ -22,5 +23,8 @@ class Usage {
 			Usage.executeUpdate("update Usage u set u.excluded = 1 where u.id = ?",[this.id])
 		}
 		return false
+	}
+	public enum Status{
+		Compliant,NonCompliant,NotUsed,Pending	
 	}
 }

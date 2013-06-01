@@ -11,6 +11,7 @@ import org.junit.*
 @TestFor(PatientController)
 class PatientControllerTests {
 
+	@Ignore
     void testSomething() {
        fail "Implement me"
     }

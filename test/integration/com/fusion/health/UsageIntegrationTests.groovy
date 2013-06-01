@@ -1,3 +1,4 @@
+
 package com.fusion.health
 
 import static org.junit.Assert.*
@@ -15,8 +16,8 @@ class UsageIntegrationTests {
 
 	private def TIME_PATTERN = "yyyy-MM-dd"
 	private def location = new Location([code : 1, name : "Somewhere"])
-	private def patient = new Patient([lastName:"Chaplin", middleName:"Spencer",firstName:"Charles",gender:Gender.Male,status:Status.Treatment,birth:new Date().parse(TIME_PATTERN,"1889-04-16"),location:location])
-	private def usage_param = [patient:patient,status:Status.Initial,date:new Date(),AHI:12]
+	private def patient = new Patient([lastName:"Chaplin", middleName:"Spencer",firstName:"Charles",gender:Gender.Male,status:Patient.Status.Treatment,birth:new Date().parse(TIME_PATTERN,"1889-04-16"),location:location])
+	private def usage_param = [patient:patient,status:Usage.Status.Pending,date:new Date(),AHI:12]
 	private def excluded_usage = new Usage(usage_param+[excluded:true])
 	private def not_excluded_usage = new Usage(usage_param+[excluded:false])
 

@@ -11,6 +11,7 @@ import org.junit.*
 @TestFor(Usage)
 class UsageTests {
 
+	@Ignore
     void testSomething() {
        fail "Implement me"
     }

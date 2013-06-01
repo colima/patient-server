@@ -11,6 +11,7 @@ import org.junit.*
 @TestFor(LocationController)
 class LocationControllerTests {
 
+	@Ignore
     void testSomething() {
        fail "Implement me"
     }
