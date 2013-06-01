@@ -12,9 +12,9 @@ h1, h2, h3, h4, h5, h6 {
 
 html {
 	background-color: #ddd;
-	background-image: -moz-linear-gradient(center top, #aaa, #ddd);
-	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #aaa), color-stop(1, #ddd));
-	background-image: linear-gradient(top, #aaa, #ddd);
+	background-image: -moz-linear-gradient(center top, #36578C, #DDD);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #36578C), color-stop(1, #DDD));
+	background-image: linear-gradient(top, #36578C, #DDD);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = '#aaaaaa', EndColorStr = '#dddddd');
 	background-repeat: no-repeat;
 	height: 100%;
@@ -48,7 +48,7 @@ body {
 }
 
 #grailsLogo {
-	background-color: #abbf78;
+	background-color: #FFF;
 }
 
 /* replace with .no-boxshadow body if you have modernizr available */
@@ -108,7 +108,7 @@ img {
 }
 
 .footer {
-	background: #abbf78;
+	background: #36578C;
 	color: #000;
 	clear: both;
 	font-size: 0.8em;

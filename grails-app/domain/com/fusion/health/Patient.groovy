@@ -39,7 +39,7 @@ class Patient {
 	}
 
 	def fullName() {
-		return "${firstName} ${middleName} ${lastName}"
+		return "${lastName}, ${firstName} ${middleName}"
 	}
 
 	static namedQueries={
