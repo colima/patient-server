@@ -1,7 +1,9 @@
+
+
+
 package com.fusion.health
 
-
-
+import java.text.SimpleDateFormat;
 import grails.test.mixin.*
 
 import org.junit.*
@@ -61,13 +63,17 @@ class PatientTests {
 	}
 	
 	private def usages(){
-		def TIME_PATTERN = "yyyy-MM-dd"
+		
 		return [
-			new Usage([status:Usage.Status.Pending,date:new Date().parse(TIME_PATTERN,"2013-01-01"),AHI:12]),
-			new Usage([status:Usage.Status.Compliant,date:new Date().parse(TIME_PATTERN,"2013-01-02"),AHI:12]),
-			new Usage([status:Usage.Status.NonCompliant,date:new Date().parse(TIME_PATTERN,"2013-01-03"),AHI:12]),
-			new Usage([status:Usage.Status.NotUsed,date:new Date().parse(TIME_PATTERN,"2013-01-04"),AHI:12]),
-			new Usage([status:Usage.Status.Compliant,date:new Date().parse(TIME_PATTERN,"2013-01-05"),AHI:12])
+			new Usage([status:Usage.Status.Pending,date:date("2013-01-01"),AHI:12]),
+			new Usage([status:Usage.Status.Compliant,date:date("2013-01-02"),AHI:12]),
+			new Usage([status:Usage.Status.NonCompliant,date:date("2013-01-03"),AHI:12]),
+			new Usage([status:Usage.Status.NotUsed,date:date("2013-01-04"),AHI:12]),
+			new Usage([status:Usage.Status.Compliant,date:date("2013-01-05"),AHI:12])
 		]
+	}
+	
+	def date(toParse){
+		return new SimpleDateFormat("yyyy-MM-dd").parse(toParse)
 	}
 }
