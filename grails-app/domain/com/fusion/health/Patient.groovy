@@ -1,7 +1,6 @@
 package com.fusion.health
 
 import groovy.time.TimeCategory;
-
 class Patient {
 
 	String lastName
@@ -12,6 +11,7 @@ class Patient {
 	Patient.Status status
 	static hasOne = [location : Location]
 	static hasMany = [usages : Usage]
+	boolean excluded
 	
 	def getAge(){
 		def now = new Date()
@@ -82,5 +82,14 @@ class Patient {
 
 	public enum Status {
 		Initial, Referred, Treatment, Closed
+	}
+	static hibernateFilters = {
+		notExcludedFilter(condition:'excluded=0', default:true)
+	}
+	def beforeDelete(){
+		Usage.withNewSession{
+			Usage.executeUpdate("update Patient u set u.excluded = 1 where u.id = ?",[this.id])
+		}
+		return false
 	}
 }

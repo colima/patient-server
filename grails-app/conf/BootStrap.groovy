@@ -6,8 +6,7 @@ import com.fusion.health.Patient.Status
 
 class BootStrap {
 
-	def init = {
-		servletContext ->
+	def init = { servletContext ->
 		development{
 			def date = new java.text.SimpleDateFormat("yyyy-MM-dd")
 			if (!Location.count()) {
@@ -30,7 +29,7 @@ class BootStrap {
 				new Usage([status:Usage.Status.Compliant,date:date.parse("2013-01-08"),AHI:15,patient:Patient.get(1)]).save(failOnError: true)
 				new Usage([status:Usage.Status.Compliant,date:date.parse("2013-01-09"),AHI:11,patient:Patient.get(1)]).save(failOnError: true)
 				new Usage([status:Usage.Status.Compliant,date:date.parse("2013-01-10"),AHI:10,patient:Patient.get(1)]).save(failOnError: true)
-				
+
 				new Usage([status:Usage.Status.Pending,date:date.parse("2013-01-01"),AHI:12,patient:Patient.get(2)]).save(failOnError: true)
 				new Usage([status:Usage.Status.Compliant,date:date.parse("2013-01-02"),AHI:13,patient:Patient.get(2)]).save(failOnError: true)
 				new Usage([status:Usage.Status.NonCompliant,date:date.parse("2013-01-03"),AHI:15,patient:Patient.get(2)]).save(failOnError: true)
@@ -41,10 +40,8 @@ class BootStrap {
 			}
 		}
 		test{
-
 		}
 		production{
-
 		}
 	}
 	def destroy = {
