@@ -1,5 +1,7 @@
 package com.fusion.health
 
+import groovy.time.TimeCategory;
+
 class Patient {
 
 	String lastName
@@ -10,35 +12,48 @@ class Patient {
 	Patient.Status status
 	static hasOne = [location : Location]
 	static hasMany = [usages : Usage]
+	
+	def getAge(){
+		def now = new Date()
+		return now.year-birth.year
+	}
 
-	def medicalRecord() {
+	def getMedicalRecord() {
 		numberCantExceedEightDigits()
 		return "MR${String.format('%08d',id)}"
 	}
 	
-	def latestAHI(){
-		def validUsages = usages.findAll{it.AHI!=0}
-		if(!validUsages) return null
-		def usage = validUsages.max{a,b -> a.date <=> b.date}
-		return [index:usage.AHI,date:usage.date]
+	def getLastAHIIndex(){
+		return latestAHI()?.AHI ?: null
 	}
-
-	def compliance() {
-		def c = this.usages.findAll{it.status == Usage.Status.Compliant}.size()
-		def np = this.usages.findAll{it.status != Usage.Status.Pending}.size()
-		return np==0?0:c/np
+	def getLastAHIDate(){
+		return latestAHI()?.date ?: null
 	}
 	
-	def effort(){
+	def private latestAHI(){
+		def validUsages = usages.findAll{it.AHI!=0}
+		if(!validUsages) return null
+		return validUsages.max{a,b -> a.date <=> b.date}
+	}
+
+	def getCompliance() {
+		def c = this.usages.findAll{it.status == Usage.Status.Compliant}.size()
+		def np = this.usages.findAll{it.status != Usage.Status.Pending}.size()
+		def compliance = (np==0?0.0:(c/np)*100)
+		return compliance.setScale(2,BigDecimal.ROUND_HALF_UP)
+	}
+	
+	def getEffort(){
 		def nc_c = this.usages.findAll{ 
 			it.status == Usage.Status.NonCompliant || 
 			it.status == Usage.Status.Compliant
 		}.size()
 		def np = this.usages.findAll{it.status != Usage.Status.Pending}.size()
-		return np==0?0:nc_c/np
+		def effort = (np==0?0.0:(nc_c/np)*100)
+		return effort.setScale(2,BigDecimal.ROUND_HALF_UP)
 	}
 
-	def fullName() {
+	def getFullName() {
 		return "${lastName}, ${firstName} ${middleName}"
 	}
 
@@ -58,7 +73,7 @@ class Patient {
 
 	@Override
 	public String toString() {
-		return fullName()
+		return getFullName()
 	}
 
 	private def numberCantExceedEightDigits() {

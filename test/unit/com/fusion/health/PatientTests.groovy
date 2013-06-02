@@ -18,21 +18,21 @@ class PatientTests {
 	void should_medical_number_defined_as_MR00000001() {
 		def params = [id:1]
 		def patient = new Patient(params)
-		assertEquals("MR00000001",patient.medicalRecord().toString())
+		assertEquals("MR00000001",patient.getMedicalRecord().toString())
 	}
 
 	@Test
 	void should_medical_number_defined_as_MR99988876() {
 		def params = [id:99988876]
 		def patient = new Patient(params)
-		assertEquals("MR99988876",patient.medicalRecord().toString())
+		assertEquals("MR99988876",patient.getMedicalRecord().toString())
 	}
 	@Test
 	void should_medical_number_thow_execption_when_id_greatter_than_eight_digitis() {
 		shouldFail(RuntimeException) {
 			def params = [id:9999999999999999]
 			def patient = new Patient(params)
-			patient.medicalRecord()
+			patient.getMedicalRecord()
 		}
 	}
 	
@@ -40,37 +40,45 @@ class PatientTests {
 	void should_computate_compliance(){
 		def patient = new Patient()
 		patient.usages = usages()
-		assertEquals(0.5,patient.compliance())
+		assertEquals(50.00,patient.getCompliance())
 	}
 	
 	@Test
 	void should_computate_effort(){
 		def patient = new Patient()
 		patient.usages = usages()
-		assertEquals(3/4,patient.effort())
+		assertEquals(75.00,patient.getEffort())
 	}
 	
 	@Test
 	void should_effort_return_zero_on_lack_of_status(){
 		def patient = new Patient()
-		assertEquals(0,patient.effort())
+		assertEquals(0.00,patient.getEffort())
 	}
 	
 	@Test
 	void should_compliance_return_zero_on_lack_of_status(){
 		def patient = new Patient()
-		assertEquals(0,patient.effort())
+		assertEquals(0.00,patient.getCompliance())
 	}
 	
 	@Test
-	void should_return_latest_AHI_index_and_date(){
+	void should_return_latest_AHIIndex(){
 		def patient = new Patient()
 		patient.usages = usages()
 		
-		assertEquals(10,patient.latestAHI().index)
-		assertEquals(date("2013-01-05"),patient.latestAHI().date)
-		
+		assertEquals(10,patient.getLastAHIIndex())
 	}
+	
+	@Test
+	void should_return_latest_AHIDate(){
+		def patient = new Patient()
+		patient.usages = usages()
+		
+		assertEquals(date("2013-01-05"),patient.getLastAHIDate())
+	}
+	
+	
 	
 	@Test
 	void should_return_for_null_usages(){
@@ -84,6 +92,12 @@ class PatientTests {
 		def dayTwoUsage = new Usage([status:Usage.Status.Compliant,date:date("2013-01-02")])
 		def patient = new Patient([usages:[dayOneUsage,dayTwoUsage]])
 		assertNull(patient.latestAHI())
+	}
+	
+	@Test
+	void should_calculate_age(){
+		def patient = new Patient([birth:date("1982-01-10")])
+		assertEquals(31, patient.getAge())
 	}
 	
 	private def usages(){

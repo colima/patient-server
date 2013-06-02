@@ -76,6 +76,42 @@
 					
 				</li>
 				</g:if>
+				
+				<g:if test="${patientInstance?.compliance}">
+				<li class="fieldcontain">
+					<span id="status-label" class="property-label"><g:message code="patient.compliance.label" default="Compliance" /></span>
+					
+						<span class="property-value" aria-labelledby="status-label"><g:fieldValue bean="${patientInstance}" field="compliance"/></span>
+					
+				</li>
+				</g:if>
+				
+				<g:if test="${patientInstance?.compliance}">
+				<li class="fieldcontain">
+					<span id="status-label" class="property-label"><g:message code="patient.effort.label" default="Effort" /></span>
+					
+						<span class="property-value" aria-labelledby="status-label"><g:fieldValue bean="${patientInstance}" field="effort"/></span>
+					
+				</li>
+				</g:if>
+				
+				<g:if test="${patientInstance?.lastAHIIndex}">
+				<li class="fieldcontain">
+					<span id="status-label" class="property-label"><g:message code="patient.lastAHIIndex.label" default="Last AHI Index" /></span>
+					
+						<span class="property-value" aria-labelledby="status-label"><g:fieldValue bean="${patientInstance}" field="lastAHIIndex"/></span>
+					
+				</li>
+				</g:if>
+				
+				<g:if test="${patientInstance?.lastAHIIndex}">
+				<li class="fieldcontain">
+					<span id="status-label" class="property-label"><g:message code="patient.lastAHIDate.label" default="Last AHI Date" /></span>
+					
+						<span class="property-value" aria-labelledby="status-label"><g:fieldValue bean="${patientInstance}" field="lastAHIDate"/></span>
+					
+				</li>
+				</g:if>
 			
 				<g:if test="${patientInstance?.location}">
 				<li class="fieldcontain">
@@ -86,23 +122,12 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${patientInstance?.usages}">
-				<li class="fieldcontain">
-					<span id="usages-label" class="property-label"><g:message code="patient.usages.label" default="Usages" /></span>
-					
-						<g:each in="${patientInstance.usages}" var="u">
-						<span class="property-value" aria-labelledby="usages-label"><g:link controller="usage" action="show" id="${u.id}">${u?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-			
 			</ol>
 			<g:form>
 				<fieldset class="buttons">
 					<g:hiddenField name="id" value="${patientInstance?.id}" />
 					<g:link class="edit" action="edit" id="${patientInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'patient.delete', default: 'Are you sure?',args:[patientInstance?.getFirstName(),patientInstance?.getLastName(),patientInstance?.getMedicalRecord()])}');" />
 				</fieldset>
 			</g:form>
 		</div>

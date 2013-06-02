@@ -73,25 +73,3 @@
 		from="${com.fusion.health.Location.list()}" optionKey="id" required=""
 		value="${patientInstance?.location?.id}" class="many-to-one" />
 </div>
-
-<div
-	class="fieldcontain ${hasErrors(bean: patientInstance, field: 'usages', 'error')} ">
-	<label for="usages"> <g:message code="patient.usages.label"
-			default="Usages" />
-
-	</label>
-
-	<ul class="one-to-many">
-		<g:each in="${patientInstance?.usages?}" var="u">
-			<li><g:link controller="usage" action="show" id="${u.id}">
-					${u?.encodeAsHTML()}
-				</g:link></li>
-		</g:each>
-		<li class="add"><g:link controller="usage" action="create"
-				params="['patient.id': patientInstance?.id]">
-				${message(code: 'default.add.label', args: [message(code: 'usage.label', default: 'Usage')])}
-			</g:link></li>
-	</ul>
-
-</div>
-

@@ -40,7 +40,7 @@ body {
 	background: #ffffff;
 	color: #333333;
 	margin: 0 auto;
-	max-width: 960px;
+	max-width: 1100px;
 	overflow-x: hidden; /* prevents box-shadow causing a horizontal scrollbar in firefox when viewport < 960px wide */
 	   -moz-box-shadow: 0 0 0.3em #255b17;
 	-webkit-box-shadow: 0 0 0.3em #255b17;
@@ -467,6 +467,13 @@ th.desc a {
 	background-image: url(../images/skin/sorted_desc.gif);
 }
 
+.green{
+	background: #00fa9a;
+}
+.red{
+	background: #db7093;
+}
+
 .odd {
 	background: #f7f7f7;
 }
@@ -476,7 +483,7 @@ th.desc a {
 }
 
 th:hover, tr:hover {
-	background: #E1F2B6;
+	background: #FFF;
 }
 
 /* PAGINATION */
