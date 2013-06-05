@@ -1,5 +1,6 @@
 package com.fusion.health
 
+@grails.util.Mixin(SoftDeletationMixin)
 class Usage {
 
 	Date date

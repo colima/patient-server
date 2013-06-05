@@ -1,15 +1,11 @@
 
 package com.fusion.health
 
+import static org.hamcrest.CoreMatchers.*
+import static org.hamcrest.Matcher.*
 import static org.junit.Assert.*
+import static org.junit.matchers.JUnitMatchers.hasItems
 
-import java.util.Date;
-
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.Matcher.*;
-import static org.junit.matchers.JUnitMatchers.hasItems;
-
-import org.hamcrest.CoreMatchers;
 import org.junit.*
 
 class UsageIntegrationTests {
@@ -49,6 +45,7 @@ class UsageIntegrationTests {
 			it.save(failOnError: true)
 		}
 
+		assertThat("It should not be fisical excluded",Usage.count(),is(2))
 		Usage.withHibernateFilter('notExcludedFilter'){
 			assertThat(Usage.count(),is(0))
 		}
@@ -63,13 +60,13 @@ class UsageIntegrationTests {
 			assertThat(it.excluded,is(true))
 		}
 	}
-
 	
 	@Test
 	void should_be_soft_deletation_on_hibernate_filter() {
 		markAllAsNotExcluded()
 		Usage.deleteAll(Usage.findAll())
 		
+		assertThat("It should not be fisical excluded",Usage.count(),is(2))
 		Usage.withHibernateFilter('notExcludedFilter'){
 			assertThat(Usage.count(),is(0))
 		}

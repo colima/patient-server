@@ -83,6 +83,9 @@ class Patient {
 	public enum Status {
 		Initial, Referred, Treatment, Closed
 	}
+	
+	// TODO : Should be generalized to all entity
+	
 	static hibernateFilters = {
 		notExcludedFilter(condition:'excluded=0', default:true)
 	}
