@@ -9,13 +9,11 @@ class UrlMappings {
 			}
 		}
 		
-		"/api/patient/$id" {
-			controller = "patientRestful"
-			action = [GET:"show"]
+		"/api/patient/$id?"(controller : "patientRestful"){
+			action = [GET:"show",DELETE:"delete",PUT:"update"]
 		}
-		"/api/patient" {
-			controller = "patientRestful"
-			action = [GET:"list"]
+		"/api/patient" (controller : "patientRestful"){
+			action = [GET:"list",POST:"save"]
 		}
 
 		"/"(view:"/index")

@@ -49,9 +49,6 @@ grails.project.dependency.resolution = {
         runtime ":jquery:1.8.3"
         runtime ":resources:1.1.6"
 		compile ":hibernate-filter:0.3.2"
-		compile ":functional-test:2.0.RC1"{
-			exclude 'commons-codec'
-		}
         // Uncomment these (or add new ones) to enable additional resources capabilities
 		
         //runtime ":zipped-resources:1.0"
