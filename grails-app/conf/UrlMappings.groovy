@@ -16,6 +16,13 @@ class UrlMappings {
 			action = [GET:"list",POST:"save"]
 		}
 
+		"/api/patient/$idp/usage/$id?"(controller : "usageRestful"){
+			action = [GET:"show",DELETE:"delete",PUT:"update"]
+		}
+		"/api/patient/$idp/usage"(controller : "usageRestful"){
+			action = [GET:"list",POST:"save"]
+		}
+
 		"/"(view:"/index")
 		"500"(view:'/error')
 	}

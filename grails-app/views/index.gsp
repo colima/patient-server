@@ -85,7 +85,8 @@
 		<div id="status" role="complementary">
 			<h1>Menu</h1>
 			<ul>
-				<li class="controller"><g:link controller="patient">Patients</g:link></li>
+				<li class="controller"><g:link controller="patient">Patient</g:link></li>
+				<li class="controller"><g:link controller="usage">Usage</g:link></li>
 			</ul>			
 		</div>
 		<div id="page-body" role="main">

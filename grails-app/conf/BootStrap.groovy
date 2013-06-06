@@ -10,15 +10,27 @@ class BootStrap {
 	def init = { servletContext ->
 		
 		def formatter = new java.text.SimpleDateFormat("yyyy-MM-dd")
+		
+		JSON.registerObjectMarshaller(Usage){ Usage usage ->
+			return[
+				id 			: 	usage.id,
+				AHI 		: 	usage.AHI,
+				date		:	formatter.format(usage.date),
+				patient		:	usage.patient.id,
+				status		: 	usage.status.toString(),
+				excluded	:	usage.excluded				
+			]
+		}
+		
 		JSON.registerObjectMarshaller(Patient){ Patient patient ->
 			return[
-				id : patient.id,
-				fullName : patient.fullName,
-				birth : formatter.format(patient.birth),
-				gender : patient.gender.toString(),
-				status : patient.status.toString(),
-				location : patient.location.toString(),
-				excluded : patient.excluded,
+				id 			: 	patient.id,
+				fullName 	: 	patient.fullName,
+				birth 		: 	formatter.format(patient.birth),
+				gender 		: 	patient.gender.toString(),
+				status 		: 	patient.status.toString(),
+				location 	: 	patient.location.toString(),
+				excluded 	: 	patient.excluded,
 			]
 		}
 		development{

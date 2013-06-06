@@ -65,7 +65,7 @@
 						
 						<td>${fieldValue(bean: patientInstance, field: "lastAHIIndex")}</td>
 						
-						<td>${fieldValue(bean: patientInstance, field: "lastAHIDate")}</td>
+						<td><g:formatDate format="yyyy-MM-dd" date="${patientInstance.lastAHIDate}"/></td>
 						
 						<td><g:link action="show" id="${patientInstance.location.id}">${patientInstance.location.name}</g:link></td>
 					</tr>
