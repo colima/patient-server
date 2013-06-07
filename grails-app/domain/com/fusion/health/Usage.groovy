@@ -1,12 +1,10 @@
 package com.fusion.health
 
-@grails.util.Mixin(SoftDeletationMixin)
 class Usage {
 
 	Date date
 	Usage.Status status
 	int AHI
-	boolean excluded
 
 	static constraints = {
 		patient blank:false
@@ -15,17 +13,23 @@ class Usage {
 	}
 
 	static belongsTo = [patient : Patient]
-	
+
+	public enum Status{
+		Compliant,NonCompliant,NotUsed,Pending
+	}
+
+
+	// TODO : Generalize for all classes domain
+	boolean excluded
+
 	static hibernateFilters = {
 		notExcludedFilter(condition:'excluded=0', default:true)
 	}
+
 	def beforeDelete(){
 		Usage.withNewSession{
 			Usage.executeUpdate("update Usage u set u.excluded = 1 where u.id = ?",[this.id])
 		}
 		return false
-	}
-	public enum Status{
-		Compliant,NonCompliant,NotUsed,Pending	
 	}
 }

@@ -11,7 +11,6 @@ class Patient {
 	Patient.Status status
 	static hasOne = [location : Location]
 	static hasMany = [usages : Usage]
-	boolean excluded
 	
 	def getAge(){
 		def now = new Date()
@@ -77,21 +76,23 @@ class Patient {
 	}
 
 	private def numberCantExceedEightDigits() {
-		if(id.toString().length()>8) throw new RuntimeException("Could you forget to change MR max digits ?")
+		if(id.toString().length()>8) throw new RuntimeException("Do you forget to change MR max digits ?")
 	}
 
 	public enum Status {
 		Initial, Referred, Treatment, Closed
 	}
 	
-	// TODO : Should be generalized to all entity
+	// TODO : Generalize for all classes domain
+	
+	boolean excluded
 	
 	static hibernateFilters = {
 		notExcludedFilter(condition:'excluded=0', default:true)
 	}
 	def beforeDelete(){
-		Usage.withNewSession{
-			Usage.executeUpdate("update Patient u set u.excluded = 1 where u.id = ?",[this.id])
+		Patient.withNewSession{
+			Patient.executeUpdate("update Patient u set u.excluded = 1 where u.id = ?",[this.id])
 		}
 		return false
 	}
