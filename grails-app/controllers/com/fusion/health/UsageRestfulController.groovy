@@ -11,9 +11,8 @@ class UsageRestfulController {
 
 	LinkGenerator grailsLinkGenerator
 
-	def list(Long idp,Integer max) {
+	def list(Long idp) {
 		Usage.disableHibernateFilter('notExcludedFilter')
-		def p = createParams()
 		def patient = Patient.get(idp) 
 		
 		if(patient==null){
@@ -25,13 +24,11 @@ class UsageRestfulController {
 	}
 
 	def save(Long idp) {
-		def p = createParams()
+		def p = createParams(idp)
 		def usage = new Usage(p)
-		def patient = Patient.get(idp)
-		usage.patient = patient
 
 		if(usage.save(flush: true)){
-			response.setHeader('Location',locationURL(patient,usage))
+			response.setHeader('Location',locationURL(usage.patient,usage))
 			response.status = 201
 		}else{
 			response.status = 500
@@ -43,17 +40,20 @@ class UsageRestfulController {
 
 	def show(Long id) {
 		Usage.disableHibernateFilter('notExcludedFilter')
-		def patient = Usage.get(id)
-		if(patient == null) {
+		def usage = Usage.get(id)
+		if(usage == null) {
 			response.status = 404
 			render ""
 			return
 		}
-		render patient as JSON
+		render usage as JSON
 	}
 
-	private def createParams(){
-		return JSON.parse(request)
+	private def createParams(idp){
+		def json = JSON.parse(request)
+		def patient = Patient.get(idp)
+		def date = new java.text.SimpleDateFormat("yyyy-MM-dd").parse(json.date)
+		return json+[date:date,patient:patient]
 	}
 	private def locationURL(patient,usage){
 		return grailsLinkGenerator.link(controller : "usageRestful",idp:patient.id,id:usage.id,action:'show',absolute:true)
