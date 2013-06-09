@@ -3,6 +3,14 @@ Grails Patient Management System
 
 Patient Management System written in Grails with RESTfull API.
 
+### Installation
+
+$ git clone git://github.com/mateushenriquebrum/patient-server.git
+$ cd patient-server
+$ grails grails install-plugin hibernate-filter
+$ grails test-app
+$ grails run-app
+
 
 ### API Manual Test
 
@@ -56,3 +64,4 @@ curl -H "Accept: application/json" -H "Content-type: application/json" http://lo
 ### BUGS
 
 * When create a new Usage for a Patient, the Header Location of response is wrong.
+* Hibernate Filter not automatic installed by grails, it's the reason why you have to install it manual.
