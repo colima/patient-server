@@ -6,10 +6,15 @@ Patient Management System written in Grails with RESTfull API.
 ### Installation
 
 $ git clone git://github.com/mateushenriquebrum/patient-server.git
+
 $ cd patient-server
+
 $ grails grails install-plugin hibernate-filter
+
 $ grails test-app
+
 $ grails run-app
+
 
 
 ### API Manual Test
