@@ -49,10 +49,10 @@ curl -H "Accept: application/json" -H "Content-type: application/json" http://lo
 
 ### TODO
 
-* Soft or Logic Deletation generalization, maybe a mixin for domain classes.
-* Hypermedia RESTful.
-* Functional Tests for RESTful API.
+* Generalize SoftDelete, maybe a mixin for domain classes.
+* Hypermedia RESTful, just follow the links to get, delete and edit Usages, for example.
+* Functional Tests for RESTful API, currently it is manual.
 
 ### BUGS
 
-* When create a new usage for a patient, the Header Location from response is wrong
+* When create a new Usage for a Patient, the Header Location of response is wrong.
