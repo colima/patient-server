@@ -54,7 +54,7 @@
 				<li class="fieldcontain">
 					<span id="birth-label" class="property-label"><g:message code="patient.birth.label" default="Birth" /></span>
 					
-						<span class="property-value" aria-labelledby="birth-label"><g:formatDate date="${patientInstance?.birth}" /></span>
+						<span class="property-value" aria-labelledby="birth-label"><g:formatDate format="yyyy-MM-dd" date="${patientInstance?.birth}" /></span>
 					
 				</li>
 				</g:if>

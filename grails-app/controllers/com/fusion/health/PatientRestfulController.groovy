@@ -14,34 +14,55 @@ class PatientRestfulController {
 	def list(Integer max) {
 		Patient.disableHibernateFilter('notExcludedFilter')
 		params.max = Math.min(max ?: 10, 100)
-		render Patient.list(params) as JSON
+		def patients = Patient.list(params)
+		request.withFormat{
+			fusion1{
+				JSON.registerObjectMarshaller(Patient){Patient patient -> return v1(patient)}
+				render patients as JSON
+			}
+			fusion2{
+				JSON.registerObjectMarshaller(Patient){Patient patient -> return v2(patient)}
+				render patients as JSON
+			}
+		}
 	}
 	
 	def save() {
-		def p = createParams()
-		def patient = new Patient(p)
+		JSON.registerObjectMarshaller(Patient){Patient p -> return v2(p)}
+		
+		def par = createParams()
+		def patient = new Patient(par)
 		
 		if(patient.save(flush: true)){
 			response.setHeader('Location',locationURL(patient))
 			response.status = 201
+			render ""
 		}else{
-			response.status = 500
-			render(patient.errors)
+			render(status : 500)
 		}
-		render ""
-		return
-		
 	}
 
 	def show(Long id) {
 		Patient.disableHibernateFilter('notExcludedFilter')
 		def patient = Patient.get(id)
-		if(patient == null) {
-			response.status = 404
-			render ""
-			return
+		request.withFormat{
+			fusion1{
+				JSON.registerObjectMarshaller(Patient){Patient p -> return v1(p)}
+				if(patient == null) {
+					render(status:404)
+				}else{
+					render patient as JSON
+				}
+			}
+			fusion2{
+				JSON.registerObjectMarshaller(Patient){Patient p -> return v2(p)}
+				if(patient == null) {
+					render(status:404)
+				}else{
+					render patient as JSON
+				}
+			}
 		}
-		render patient as JSON
 	}
 
 	def update(Long id) {
@@ -70,12 +91,33 @@ class PatientRestfulController {
 		def patient = Patient.get(id)
 		try {
 			patient.delete(flush: true)
-			response.status = 200
-			render ""
+			render (status:200)
 		}
 		catch (DataIntegrityViolationException e) {
-			response.status = 500
-			render ""
+			render (status:500)
 		}
+	}
+	def v1(Patient patient) { 
+		return 	[
+				id 			: 	patient.id,
+				firstName 	: 	patient.firstName,
+				middleName 	: 	patient.middleName,
+				lastName 	: 	patient.lastName,
+				birth 		: 	patient.birth,
+				gender 		: 	patient.gender.toString(),
+				status 		: 	patient.status.toString(),
+				location 	: 	patient.location.toString(),
+				]
+	}
+	def v2(Patient patient) {
+		return [
+				id			:		patient.id,
+				fullName	:		patient.fullName,
+				birth		:		patient.birth,
+				gender		:		patient.gender.toString(),
+				status		:		patient.status.toString(),
+				location	:		patient.location.toString(),
+				excluded	:		patient.excluded
+				]
 	}
 }

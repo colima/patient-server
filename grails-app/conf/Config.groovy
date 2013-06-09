@@ -11,10 +11,12 @@
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
 // }
 
-grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
-grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
-grails.mime.use.accept.header = false
+grails.project.groupId = com.fusion.health // change this to alter the default package name and Maven publishing destination
+grails.mime.file.extensions = false // enables the parsing of file extensions from URLs into the request format
+grails.mime.use.accept.header = true
 grails.mime.types = [
+	fusion1:	   'vnd.com.fusion.v1+json',
+	fusion2:	   'vnd.com.fusion.v2+json',
     all:           '*/*',
     atom:          'application/atom+xml',
     css:           'text/css',

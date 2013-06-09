@@ -8,40 +8,34 @@ import grails.converters.JSON
 class BootStrap {
 
 	def init = { servletContext ->
+		def DATE_PATTERN = "yyyy-MM-dd"
 		
-		def formatter = new java.text.SimpleDateFormat("yyyy-MM-dd")
+		JSON.registerObjectMarshaller(Date) {
+			return it?.format(DATE_PATTERN)
+		 }
 		
 		JSON.registerObjectMarshaller(Usage){ Usage usage ->
 			return[
 				id 			: 	usage.id,
 				AHI 		: 	usage.AHI,
-				date		:	formatter.format(usage.date),
+				date		:	usage.date,
 				patient		:	usage.patient.id,
 				status		: 	usage.status.toString(),
 				excluded	:	usage.excluded				
 			]
 		}
 		
-		JSON.registerObjectMarshaller(Patient){ Patient patient ->
-			return[
-				id 			: 	patient.id,
-				fullName 	: 	patient.fullName,
-				birth 		: 	formatter.format(patient.birth),
-				gender 		: 	patient.gender.toString(),
-				status 		: 	patient.status.toString(),
-				location 	: 	patient.location.toString(),
-				excluded 	: 	patient.excluded,
-			]
-		}
 		development{
+			def formatter = new java.text.SimpleDateFormat("yyyy-MM-dd")
+			
 			if (!Location.count()) {
 				new Location(code : 1, name : "Test location").save(failOnError: true)
 				new Location(code : 2, name : "Fusion Sleep").save(failOnError: true)
 			}
 			if(!Patient.count()){
-				new Patient(lastName:"Brum", middleName:"Henrique",firstName:"Mateus",gender:Gender.Male,status:Patient.Status.Initial,birth:formatter.parse("1982-01-10"),location:Location.get(1)).save(failOnError: true)
-				new Patient(lastName:"Brum", middleName:"Karina",firstName:"Valesca",gender:Gender.Female,status:Patient.Status.Treatment,birth:formatter.parse("1988-05-26"),location:Location.get(1)).save(failOnError: true)
-				new Patient(lastName:"Brum", middleName:"Henrique",firstName:"Iago",gender:Gender.Male,status:Patient.Status.Closed,birth:formatter.parse("2004-01-29"),location:Location.get(2)).save(failOnError: true)
+				new Patient(lastName:"Newton", middleName:"Issac",firstName:"Sir",gender:Gender.Male,status:Patient.Status.Initial,birth:formatter.parse("1643-01-04"),location:Location.get(1)).save(failOnError: true)
+				new Patient(lastName:"Leibniz", middleName:"Wilhelm",firstName:"Gottfried",gender:Gender.Male,status:Patient.Status.Treatment,birth:formatter.parse("1646-07-01"),location:Location.get(1)).save(failOnError: true)
+				new Patient(lastName:"Hawking", middleName:"William",firstName:"Stephen",gender:Gender.Male,status:Patient.Status.Closed,birth:formatter.parse("1942-01-08"),location:Location.get(1)).save(failOnError: true)
 			}
 			if(!Usage.count()){
 				new Usage([status:Usage.Status.Pending,date:formatter.parse("2013-01-01"),AHI:12,patient:Patient.get(1)]).save(failOnError: true)
@@ -54,7 +48,8 @@ class BootStrap {
 				new Usage([status:Usage.Status.Compliant,date:formatter.parse("2013-01-08"),AHI:15,patient:Patient.get(1)]).save(failOnError: true)
 				new Usage([status:Usage.Status.Compliant,date:formatter.parse("2013-01-09"),AHI:11,patient:Patient.get(1)]).save(failOnError: true)
 				new Usage([status:Usage.Status.Compliant,date:formatter.parse("2013-01-10"),AHI:10,patient:Patient.get(1)]).save(failOnError: true)
-
+				new Usage([status:Usage.Status.Compliant,date:formatter.parse("2013-01-11"),AHI:12,patient:Patient.get(1)]).save(failOnError: true)
+				
 				new Usage([status:Usage.Status.Pending,date:formatter.parse("2013-01-01"),AHI:12,patient:Patient.get(2)]).save(failOnError: true)
 				new Usage([status:Usage.Status.Compliant,date:formatter.parse("2013-01-02"),AHI:13,patient:Patient.get(2)]).save(failOnError: true)
 				new Usage([status:Usage.Status.NonCompliant,date:formatter.parse("2013-01-03"),AHI:15,patient:Patient.get(2)]).save(failOnError: true)
