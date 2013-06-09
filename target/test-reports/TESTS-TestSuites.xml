@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+  <testsuite errors="0" failures="0" hostname="brum" id="0" name="PatientIntegrationTests" package="com.fusion.health" tests="1" time="0.342" timestamp="2013-06-09T11:11:01">
+      <properties />
+
+      <testcase classname="com.fusion.health.PatientIntegrationTests" name="should_return_only_patient_on_treatment" time="0.329" />
+
+      <system-out><![CDATA[--Output from should_return_only_patient_on_treatment--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from should_return_only_patient_on_treatment--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="brum" id="1" name="UsageIntegrationTests" package="com.fusion.health" tests="4" time="0.478" timestamp="2013-06-09T11:11:01">
+      <properties />
+
+      <testcase classname="com.fusion.health.UsageIntegrationTests" name="should_return_only_usages_not_excluded" time="0.091" />
+
+      <testcase classname="com.fusion.health.UsageIntegrationTests" name="should_not_return_any_usage" time="0.038" />
+
+      <testcase classname="com.fusion.health.UsageIntegrationTests" name="should_set_excluded_when_delete" time="0.283" />
+
+      <testcase classname="com.fusion.health.UsageIntegrationTests" name="should_be_soft_deletation_on_hibernate_filter" time="0.036" />
+
+      <system-out><![CDATA[--Output from should_return_only_usages_not_excluded--
+--Output from should_not_return_any_usage--
+--Output from should_set_excluded_when_delete--
+--Output from should_be_soft_deletation_on_hibernate_filter--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from should_return_only_usages_not_excluded--
+--Output from should_not_return_any_usage--
+--Output from should_set_excluded_when_delete--
+--Output from should_be_soft_deletation_on_hibernate_filter--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="brum" id="2" name="PatientTests" package="com.fusion.health" tests="12" time="1.29" timestamp="2013-06-09T11:10:47">
+      <properties />
+
+      <testcase classname="com.fusion.health.PatientTests" name="should_medical_number_defined_as_MR00000001" time="0.718" />
+
+      <testcase classname="com.fusion.health.PatientTests" name="should_medical_number_defined_as_MR99988876" time="0.031" />
+
+      <testcase classname="com.fusion.health.PatientTests" name="should_medical_number_thow_execption_when_id_greatter_than_eight_digitis" time="0.041" />
+
+      <testcase classname="com.fusion.health.PatientTests" name="should_computate_compliance" time="0.113" />
+
+      <testcase classname="com.fusion.health.PatientTests" name="should_computate_effort" time="0.055" />
+
+      <testcase classname="com.fusion.health.PatientTests" name="should_effort_return_zero_on_lack_of_status" time="0.037" />
+
+      <testcase classname="com.fusion.health.PatientTests" name="should_compliance_return_zero_on_lack_of_status" time="0.032" />
+
+      <testcase classname="com.fusion.health.PatientTests" name="should_return_latest_AHIIndex" time="0.06" />
+
+      <testcase classname="com.fusion.health.PatientTests" name="should_return_latest_AHIDate" time="0.042" />
+
+      <testcase classname="com.fusion.health.PatientTests" name="should_return_for_null_usages" time="0.033" />
+
+      <testcase classname="com.fusion.health.PatientTests" name="should_return_for_invalides_usages" time="0.04" />
+
+      <testcase classname="com.fusion.health.PatientTests" name="should_calculate_age" time="0.033" />
+
+      <system-out><![CDATA[--Output from should_medical_number_defined_as_MR00000001--
+--Output from should_medical_number_defined_as_MR99988876--
+--Output from should_medical_number_thow_execption_when_id_greatter_than_eight_digitis--
+--Output from should_computate_compliance--
+--Output from should_computate_effort--
+--Output from should_effort_return_zero_on_lack_of_status--
+--Output from should_compliance_return_zero_on_lack_of_status--
+--Output from should_return_latest_AHIIndex--
+--Output from should_return_latest_AHIDate--
+--Output from should_return_for_null_usages--
+--Output from should_return_for_invalides_usages--
+--Output from should_calculate_age--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from should_medical_number_defined_as_MR00000001--
+--Output from should_medical_number_defined_as_MR99988876--
+--Output from should_medical_number_thow_execption_when_id_greatter_than_eight_digitis--
+--Output from should_computate_compliance--
+--Output from should_computate_effort--
+--Output from should_effort_return_zero_on_lack_of_status--
+--Output from should_compliance_return_zero_on_lack_of_status--
+--Output from should_return_latest_AHIIndex--
+--Output from should_return_latest_AHIDate--
+--Output from should_return_for_null_usages--
+--Output from should_return_for_invalides_usages--
+--Output from should_calculate_age--
+]]></system-err>
+
+  </testsuite>
+</testsuites>

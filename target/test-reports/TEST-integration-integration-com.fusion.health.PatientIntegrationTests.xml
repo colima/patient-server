@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="brum" name="com.fusion.health.PatientIntegrationTests" tests="1" time="0.342" timestamp="2013-06-09T11:11:01">
+  <properties />
+  <testcase classname="com.fusion.health.PatientIntegrationTests" name="should_return_only_patient_on_treatment" time="0.329" />
+  <system-out><![CDATA[--Output from should_return_only_patient_on_treatment--
+]]></system-out>
+  <system-err><![CDATA[--Output from should_return_only_patient_on_treatment--
+]]></system-err>
+</testsuite>

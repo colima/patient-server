@@ -1,0 +1,10 @@
+Testsuite: com.fusion.health.PatientIntegrationTests
+Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.342 sec
+------------- Standard Output ---------------
+--Output from should_return_only_patient_on_treatment--
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+--Output from should_return_only_patient_on_treatment--
+------------- ---------------- ---------------
+
+Testcase: should_return_only_patient_on_treatment took 0.329 sec

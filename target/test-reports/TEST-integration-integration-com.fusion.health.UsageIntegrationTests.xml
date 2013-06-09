@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="brum" name="com.fusion.health.UsageIntegrationTests" tests="4" time="0.478" timestamp="2013-06-09T11:11:01">
+  <properties />
+  <testcase classname="com.fusion.health.UsageIntegrationTests" name="should_return_only_usages_not_excluded" time="0.091" />
+  <testcase classname="com.fusion.health.UsageIntegrationTests" name="should_not_return_any_usage" time="0.038" />
+  <testcase classname="com.fusion.health.UsageIntegrationTests" name="should_set_excluded_when_delete" time="0.283" />
+  <testcase classname="com.fusion.health.UsageIntegrationTests" name="should_be_soft_deletation_on_hibernate_filter" time="0.036" />
+  <system-out><![CDATA[--Output from should_return_only_usages_not_excluded--
+--Output from should_not_return_any_usage--
+--Output from should_set_excluded_when_delete--
+--Output from should_be_soft_deletation_on_hibernate_filter--
+]]></system-out>
+  <system-err><![CDATA[--Output from should_return_only_usages_not_excluded--
+--Output from should_not_return_any_usage--
+--Output from should_set_excluded_when_delete--
+--Output from should_be_soft_deletation_on_hibernate_filter--
+]]></system-err>
+</testsuite>

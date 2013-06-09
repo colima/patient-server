@@ -1,0 +1,19 @@
+Testsuite: com.fusion.health.UsageIntegrationTests
+Tests run: 4, Failures: 0, Errors: 0, Time elapsed: 0.478 sec
+------------- Standard Output ---------------
+--Output from should_return_only_usages_not_excluded--
+--Output from should_not_return_any_usage--
+--Output from should_set_excluded_when_delete--
+--Output from should_be_soft_deletation_on_hibernate_filter--
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+--Output from should_return_only_usages_not_excluded--
+--Output from should_not_return_any_usage--
+--Output from should_set_excluded_when_delete--
+--Output from should_be_soft_deletation_on_hibernate_filter--
+------------- ---------------- ---------------
+
+Testcase: should_return_only_usages_not_excluded took 0.091 sec
+Testcase: should_not_return_any_usage took 0.038 sec
+Testcase: should_set_excluded_when_delete took 0.283 sec
+Testcase: should_be_soft_deletation_on_hibernate_filter took 0.036 sec

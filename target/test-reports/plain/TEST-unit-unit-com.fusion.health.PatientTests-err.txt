@@ -1,0 +1,12 @@
+--Output from should_medical_number_defined_as_MR00000001--
+--Output from should_medical_number_defined_as_MR99988876--
+--Output from should_medical_number_thow_execption_when_id_greatter_than_eight_digitis--
+--Output from should_computate_compliance--
+--Output from should_computate_effort--
+--Output from should_effort_return_zero_on_lack_of_status--
+--Output from should_compliance_return_zero_on_lack_of_status--
+--Output from should_return_latest_AHIIndex--
+--Output from should_return_latest_AHIDate--
+--Output from should_return_for_null_usages--
+--Output from should_return_for_invalides_usages--
+--Output from should_calculate_age--

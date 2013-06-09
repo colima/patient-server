@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="brum" name="com.fusion.health.PatientTests" tests="12" time="1.29" timestamp="2013-06-09T11:10:47">
+  <properties />
+  <testcase classname="com.fusion.health.PatientTests" name="should_medical_number_defined_as_MR00000001" time="0.718" />
+  <testcase classname="com.fusion.health.PatientTests" name="should_medical_number_defined_as_MR99988876" time="0.031" />
+  <testcase classname="com.fusion.health.PatientTests" name="should_medical_number_thow_execption_when_id_greatter_than_eight_digitis" time="0.041" />
+  <testcase classname="com.fusion.health.PatientTests" name="should_computate_compliance" time="0.113" />
+  <testcase classname="com.fusion.health.PatientTests" name="should_computate_effort" time="0.055" />
+  <testcase classname="com.fusion.health.PatientTests" name="should_effort_return_zero_on_lack_of_status" time="0.037" />
+  <testcase classname="com.fusion.health.PatientTests" name="should_compliance_return_zero_on_lack_of_status" time="0.032" />
+  <testcase classname="com.fusion.health.PatientTests" name="should_return_latest_AHIIndex" time="0.06" />
+  <testcase classname="com.fusion.health.PatientTests" name="should_return_latest_AHIDate" time="0.042" />
+  <testcase classname="com.fusion.health.PatientTests" name="should_return_for_null_usages" time="0.033" />
+  <testcase classname="com.fusion.health.PatientTests" name="should_return_for_invalides_usages" time="0.04" />
+  <testcase classname="com.fusion.health.PatientTests" name="should_calculate_age" time="0.033" />
+  <system-out><![CDATA[--Output from should_medical_number_defined_as_MR00000001--
+--Output from should_medical_number_defined_as_MR99988876--
+--Output from should_medical_number_thow_execption_when_id_greatter_than_eight_digitis--
+--Output from should_computate_compliance--
+--Output from should_computate_effort--
+--Output from should_effort_return_zero_on_lack_of_status--
+--Output from should_compliance_return_zero_on_lack_of_status--
+--Output from should_return_latest_AHIIndex--
+--Output from should_return_latest_AHIDate--
+--Output from should_return_for_null_usages--
+--Output from should_return_for_invalides_usages--
+--Output from should_calculate_age--
+]]></system-out>
+  <system-err><![CDATA[--Output from should_medical_number_defined_as_MR00000001--
+--Output from should_medical_number_defined_as_MR99988876--
+--Output from should_medical_number_thow_execption_when_id_greatter_than_eight_digitis--
+--Output from should_computate_compliance--
+--Output from should_computate_effort--
+--Output from should_effort_return_zero_on_lack_of_status--
+--Output from should_compliance_return_zero_on_lack_of_status--
+--Output from should_return_latest_AHIIndex--
+--Output from should_return_latest_AHIDate--
+--Output from should_return_for_null_usages--
+--Output from should_return_for_invalides_usages--
+--Output from should_calculate_age--
+]]></system-err>
+</testsuite>
