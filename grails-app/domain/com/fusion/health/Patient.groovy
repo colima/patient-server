@@ -88,11 +88,12 @@ class Patient {
 	boolean excluded
 	
 	static hibernateFilters = {
-		notExcludedFilter(condition:'excluded=0', default:true)
+		notExcludedFilter(condition:"excluded='0'", default:true)
 	}
+	
 	def beforeDelete(){
 		Patient.withNewSession{
-			Patient.executeUpdate("update Patient u set u.excluded = 1 where u.id = ?",[this.id])
+			Patient.executeUpdate("update Patient u set u.excluded = true where u.id = ?",[this.id])
 		}
 		return false
 	}

@@ -23,12 +23,12 @@ class Usage {
 	boolean excluded
 
 	static hibernateFilters = {
-		notExcludedFilter(condition:'excluded=0', default:true)
+		notExcludedFilter(condition:"excluded='0'", default:true)
 	}
 
 	def beforeDelete(){
 		Usage.withNewSession{
-			Usage.executeUpdate("update Usage u set u.excluded = 1 where u.id = ?",[this.id])
+			Usage.executeUpdate("update Usage u set u.excluded = true where u.id = ?",[this.id])
 		}
 		return false
 	}
